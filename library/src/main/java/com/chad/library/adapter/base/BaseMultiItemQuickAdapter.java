@@ -2,7 +2,6 @@ package com.chad.library.adapter.base;
 
 import android.support.annotation.IntRange;
 import android.support.annotation.LayoutRes;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
-public abstract class BaseMultiItemQuickAdapter<T extends MultiItemEntity, K extends BaseViewHolder> extends BaseQuickAdapter<T, K> {
+public abstract class BaseMultiItemQuickAdapter<T, K extends BaseViewHolder> extends BaseQuickAdapter<T, K> {
 
     /**
      * layouts indexed with their types
@@ -34,11 +33,13 @@ public abstract class BaseMultiItemQuickAdapter<T extends MultiItemEntity, K ext
         super(data);
     }
 
+    public abstract int getItemType(T data, int position);
+
     @Override
     protected int getDefItemViewType(int position) {
         T item = mData.get(position);
         if (item != null) {
-            return item.getItemType();
+            return getItemType(item, position);
         }
         return DEFAULT_VIEW_TYPE;
     }

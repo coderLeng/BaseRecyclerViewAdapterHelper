@@ -596,6 +596,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         if (view == null) {
             view = itemView.findViewById(viewId);
             views.put(viewId, view);
+
+            if (this.adapter != null) {
+                this.adapter.onViewCached(this, view, viewId);
+            }
         }
         return (T) view;
     }

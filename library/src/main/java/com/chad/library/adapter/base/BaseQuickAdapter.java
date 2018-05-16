@@ -135,6 +135,9 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
     private RecyclerView mRecyclerView;
 
+    protected void onViewCached(final K holder, View view, int resId) {
+    }
+
     protected RecyclerView getRecyclerView() {
         return mRecyclerView;
     }
